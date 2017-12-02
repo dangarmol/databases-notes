@@ -1,0 +1,173 @@
+--------------------------------------------------------
+-- Archivo creado  - jueves-abril-27-2017   
+--------------------------------------------------------
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.CLAVE_INVIRTE_PRIM mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE UNIQUE INDEX HECTOR.CLAVE_INVIRTE_PRIM ON HECTOR.INVIERTE (DNI, NOMBREE, TIPO) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS 2147483645 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.I_CATPLATOS mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.I_CATPLATOS ON HECTOR.PLATOS (CATEGORIA ASC) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS 2147483645 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.PK_AREASCOBERTURA mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE UNIQUE INDEX HECTOR.PK_AREASCOBERTURA ON HECTOR.AREASCOBERTURA (CODIGORES, CODIGOPOSTAL) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS 2147483645 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.PK_CLIENTE mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE UNIQUE INDEX HECTOR.PK_CLIENTE ON HECTOR.CLIENTES (DNI) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS 2147483645 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.PK_CONTIENE mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE UNIQUE INDEX HECTOR.PK_CONTIENE ON HECTOR.CONTIENE (RESTAURANTE, PLATO, PEDIDO) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS 2147483645 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.PK_DESCUENTO mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE UNIQUE INDEX HECTOR.PK_DESCUENTO ON HECTOR.DESCUENTOS (CODIGODESCUENTO) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS 2147483645 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.PK_HORARIO mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE UNIQUE INDEX HECTOR.PK_HORARIO ON HECTOR.HORARIOS (CODIGORES, DIA_SEMANA) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS 2147483645 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.PK_PEDIDO mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE UNIQUE INDEX HECTOR.PK_PEDIDO ON HECTOR.PEDIDOS (CODIGO) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS 2147483645 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.PK_PLATO mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE UNIQUE INDEX HECTOR.PK_PLATO ON HECTOR.PLATOS (RESTAURANTE, NOMBREPLATO) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS 2147483645 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.PK_RESTAURANTE mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE UNIQUE INDEX HECTOR.PK_RESTAURANTE ON HECTOR.RESTAURANTES (CODIGO) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS 2147483645 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.PK_SECRETO mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE UNIQUE INDEX HECTOR.PK_SECRETO ON HECTOR.SECRETO (DNI, NUMEROORDEN) 
+LOGGING 
+TABLESPACE "ESPACIOUHECTOR" 
+PCTFREE 10 
+INITRANS 2 
+STORAGE 
+( 
+  BUFFER_POOL DEFAULT 
+)
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.SYS_C0017335 mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.SYS_C0017335 ON ()
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.SYS_C0022277 mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.SYS_C0022277 ON ()
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.SYS_C0023057 mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.SYS_C0023057 ON ()
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.SYS_C0029169 mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.SYS_C0029169 ON ()
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.SYS_C0029171 mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.SYS_C0029171 ON ()
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.SYS_C0029173 mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.SYS_C0029173 ON ()
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.SYS_C0029182 mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.SYS_C0029182 ON ()
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.SYS_C0029184 mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.SYS_C0029184 ON ()
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.SYS_C0029188 mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.SYS_C0029188 ON ()
+-- No se ha podido presentar el DDL INDEX para el objeto HECTOR.SYS_C0029192 mientras que DBMS_METADATA intenta utilizar el generador interno.
+CREATE INDEX HECTOR.SYS_C0029192 ON ()
