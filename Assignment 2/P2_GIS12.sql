@@ -1,0 +1,70 @@
+--Daniel García Molero
+
+--1. Listado de empleados (con toda la información disponible) de los empleados que trabajan en el departamento cuyo identificador es 50.
+--##Algebra relacional
+distinct (select department_id = 50 (employees));
+--##SQL
+SELECT DISTINCT * FROM employees WHERE (employees.department_id=50);
+
+--2. Listado de empleados que reciben algún tipo de comisión. En el listado deben aparecer todos los datos de los empleados.
+--##Algebra relacional
+distinct (select commission_pct is not null (employees));
+--##SQL
+SELECT DISTINCT * FROM employees WHERE (employees.commission_pct is not null);
+
+--3. Listado con los nombres de los empleados que no tienen jefe.
+--##Algebra relacional
+distinct (project first_name, last_name (select manager_id is null (employees)));
+--##SQL
+SELECT DISTINCT first_name, last_name FROM employees WHERE (employees.manager_id is null);
+
+--4. Listado con los nombres de los empleados que trabajan en el departamento de ventas ('Sales').
+--##Algebra relacional
+distinct(project first_name, last_name(select department_name = 'Sales' AND employees.department_id = departments.department_id (employees product departments)));
+--##SQL
+SELECT DISTINCT first_name, last_name FROM employees, departments WHERE (department_name= 'Sales') AND (employees.department_id = departments.department_id);
+
+--5. Listado con los nombres de los empleados que han trabajado en el departamento de ventas ('Sales'). PISTA: De eso nos informa la tabla job_history, que tiene el histórico de trabajos
+--##Algebra relacional
+distinct(project first_name, last_name(select department_name = 'Sales' AND job_history.department_id = departments.department_id AND employees.employee_id = job_history.employee_id ((employees product departments) product job_history)));
+--##SQL
+SELECT DISTINCT first_name, last_name FROM employees, departments, job_history WHERE (department_name = 'Sales') AND (job_history.department_id = departments.department_id) AND (employees.employee_id = job_history.employee_id);
+
+--6. Listado con los nombres de los empleados que han trabajado en el departamento de ventas, pero que actualmente trabajan en otro departamento distinto.
+--##Algebra relacional
+distinct(project first_name, last_name(select department_name = 'Sales' AND job_history.department_id = departments.department_id AND job_history.department_id <> employees.department_id AND employees.employee_id = job_history.employee_id ((employees product departments) product job_history)));
+--##SQL
+SELECT DISTINCT first_name, last_name FROM employees, departments, job_history WHERE (department_name = 'Sales') AND (job_history.department_id = departments.department_id) AND (job_history.department_id <> employees.department_id) AND (employees.employee_id = job_history.employee_id);
+
+--7. Listado con los nombres de los empleados que trabajan en el departamento de informática ('IT') que no trabajan en Europa (region_name 'Europe'), junto con el nombre del país en el que trabajan.
+--##Algebra relacional
+distinct(project first_name, last_name, country_name (select department_name = 'IT' AND region_name <> 'Europe' AND employees.department_id = departments.department_id AND locations.location_id = departments.location_id AND locations.country_id = countries.country_id AND countries.region_id = regions.region_id ((((employees product departments) product locations) product countries) product regions)));
+--##SQL
+SELECT DISTINCT first_name, last_name FROM employees, departments, locations, countries, regions  WHERE (department_name = 'IT' AND region_name <> 'Europe') AND (employees.department_id = departments.department_id) AND (locations.location_id = departments.location_id) AND (locations.country_id = countries.country_id) AND (countries.region_id = regions.region_id);
+
+--8. Nombres de los puestos que desempeñan los empleados en el departamento de informática, sin tuplas repetidas.
+--##Algebra relacional
+distinct(project job_title (select department_name = 'IT' AND departments.department_id = employees.department_id AND employees.job_id = jobs.job_id ((jobs product employees) product departments)));
+--##SQL
+SELECT DISTINCT job_title FROM jobs,employees,departments WHERE (department_name = 'IT') AND (departments.department_id = employees.department_id) AND (employees.job_id = jobs.job_id);
+
+--9. Nombres de los empleados que tienen personal a su cargo, es decir, que son jefes de algún empleado. Como es natural, sin repetición.
+--##Algebra relacional
+m := rename emp(m_id, m_name, m_surname, m_email, m_phone_number, m_hdate, m_jobid, m_salary, m_comission, m_managerid, m_depid) (employees);
+distinct (project m_name, m_surname (select employees.manager_id = m.m_id (employees product m)));
+--##SQL
+SELECT DISTINCT m.first_name, m.last_name FROM employees e, employees m WHERE (e.manager_id = m.employee_id);
+
+--10. Listado de los nombres de los empleados que ganan más que su jefe, incluyendo también el nombre de su jefe y los salarios de ambos.
+--##Algebra relacional
+m := rename emp(m_id, m_name, m_surname, m_email, m_phone_number, m_hdate, m_jobid, m_salary, m_comission, m_managerid, m_depid) (employees);
+distinct (project first_name, last_name, salary, m_name, m_surname, m_salary (select employees.salary > m.m_salary AND employees.manager_id = m.m_id(employees product m)));
+--##SQL
+SELECT  e.first_name, e.last_name, e.salary, m.first_name, m.last_name, m.salary FROM employees e, employees m WHERE (e.salary > m.salary) AND (e.manager_id = m.employee_id);
+
+--11. Listado de los nombres de los empleados que no trabajan en el mismo departamento que su jefe, junto con el nombre de su jefe y el departamento en el que trabajan ambos.
+--##Algebra relacional
+m := rename emp(m_id, m_name, m_surname, m_email, m_phone_number, m_hdate, m_jobid, m_salary, m_comission, m_managerid, m_depid) (employees);
+distinct (project first_name, last_name, department_id, m_name, m_surname, m_depid (select employees.department_id <> m.m_depid AND employees.manager_id = m.m_id(employees product m)));
+--##SQL
+SELECT DISTINCT e.first_name, e.last_name, e.department_id, m.first_name, m.last_name, m.department_id FROM employees e, employees m WHERE (e.department_id <> m.department_id) AND (e.manager_id = m.employee_id);

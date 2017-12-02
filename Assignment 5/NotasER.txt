@@ -1,0 +1,4 @@
+No sabemos si está bien expresada la relación para invitar amigos.
+Hemos añadido "Número referidos" en Usuario, para que sea más fácil de calcular el bono, en vez de buscar quién es el referido de quién cada vez.
+En la búsqueda, la fecha y hora se incluyen en un solo String.
+En el apartado dirección, el campo "Dirección", incluye también número, piso etc...

@@ -1,0 +1,61 @@
+PRÁCTICA 1 SQL (GIS12)
+
+DANIEL GARCÍA MOLERO Y MARIO RODRÍGUEZ SALINERO
+
+-------------------------------------------------------
+
+Apartado 1:
+¿Qué es y para qué sirve la tabla DUAL?
+La tabla DUAL es una tabla especial de una sola columna presente de manera predeterminada en todas las instalaciones de bases de datos de Oracle.
+Sirve para probar funciones o hacer cálculos rápidos ya que sólo tiene una celda.
+
+1. ¿Qué parámetros le has pasado al comando sqlplus?
+ADMINUSER @BDSA /ADMINUSER
+
+2. ¿Qué comando(s) has utilizado dentro de SQL*Plus?
+SQL> CONNECT ADMINUSER/ADMINUSER @BDSA
+
+-------------------------------------------------------
+
+Apartado 2:
+a) ¿Qué es un TABLESPACE? ¿Qué es un segmento (SEGMENT)? ¿Y un bloque (BLOCK)?
+
+•	TABLESPACE: Es una unidad de almacenamiento lógico en la que se divide una base de datos. Está a su vez relacionada con las distintas partes lógicas de la base de datos (tablas, vistas u otros objetos). Consiste en uno o más archivos de datos físicos.
+•	SEGMENT: Un segment es aquel espacio reservado por la base de datos, dentro de un datafile, para ser utilizado por un solo objeto. Es un espacio de memoria dinámico, ya que, si por ejemplo la tabla guardada en un segment crece, el segmento también crece.
+•	BLOCK: Un bloque es la unidad mínima de almacenamiento de información de Oracle. Cada uno de estos bloques está formado por un número determinado de bloques del sistema operativo. Todo programa debe tener al menos uno.
+
+b) ¿Qué tarea lleva a cabo la instrucción SQL que aparece en el paso 2? Intenta describirla brevemente
+
+•	La instrucción crea un nuevo tablespace con el nombre EMPRESAGIS12, sus datafiles se guardarán en la ruta especificada, con un tamaño guardado de 5M no ampliable.
+
+c) ¿Qué tarea lleva a cabo la instrucción SQL que aparece en el paso 3? Intenta describirla brevemente.
+
+•	Crear un nuevo usuario GIS12 en la tablespace EMPRESAGIS12, con permisos para crear objetos en la tablespace.
+
+¿Cómo está relacionado con los TABLESPACEs? ¿Qué papel juega el DEFAULT TABLESPACE? 
+
+•	Usar “DEFAULT TABLESPACE” asigna a un usuario el tablespace por defecto para almacenar los objetos que cree. Si no se asigna ninguno, el tablespace por defecto es SYSTEM. 
+
+¿Qué es un TEMPORARY TABLESPACE?
+
+•	Un TEMPORARY TABLESPACE se usa para organizar el espacio para las operaciones de ordenación y para guardar tablas globales temporales. Por ejemplo, si unes dos tablas grandes y no se pueden ordenar, parte de la tabla se guardará en un TEMPORARY TABLESPACE para hacer la operación de ordenación.
+Es decir, “TEMPORARY TABLESPACE” especifica el nombre del tablespace para trabajos temporales. Si no se especifica ninguno, el tablespace por defecto es SYSTEM. 
+
+e) ¿Qué son los privilegios? ¿Qué tipos hay? ¿Cómo están relacionados con los roles?
+
+Los privilegios de las bases de datos determinan la autorización que se tiene para crear o acceder a las tablas de los almacenes de datos.
+Los permisos en SQL se asignan a roles, que se pueden asignar a usuarios, parecido a grupos de usuarios de Windows.
+
+Los privilegios pueden ser de dos tipos:
+•	Privilegio de sistema: Otorga el derecho de realizar una acción específica en la base de datos o realizar una acción en cualquier objeto de un tipo específico. Por ejemplo, CREATE USER y CREATE SESSION son privilegios de sistema.
+•	Privilegio de objeto: Otorga el derecho de realizar una acción específica en un objeto.
+
+Los privilegios se proporcionan a usuarios, los administradores deben dar privilegios a los usuarios de manera que puedan realizar las tareas pertinentes para sus puestos.
+Un rol es un grupo de privilegios relacionados que se le asignan a usuarios o a otros roles.
+Los roles ayudan a organizar los privilegios para una base de datos o un grupo de usuarios.
+
+-------------------------------------------------------
+
+Apartado 3:
+Después de entrar en el usuario del sqlplus se ejecuta la siguiente instrucción:
+SQL > @ruta/nombreScript.sql

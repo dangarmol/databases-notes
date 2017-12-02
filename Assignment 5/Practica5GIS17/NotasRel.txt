@@ -1,0 +1,2 @@
+El ISBN del libro, se usa como código, al ser único para cada publicación.
+Los usuarios no tienen por qué dejar un comentario, pero sí una valoración al comprar.
